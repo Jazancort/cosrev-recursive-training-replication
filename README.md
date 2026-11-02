@@ -12,7 +12,7 @@ Supplementary code, data and pre-compiled PDFs for the paper:
 
 **Recursive Training on Model-Generated Data: A Critical Integrative Review of Failure Regimes, Adversarial Interactions and Governance**
 
-Azancort Neto, J.L. · Ferreira de Carvalho, A.C.P.L. · Francês, C.R.L.
+Azancort Neto, J.L. · Teixeira, C.A.M. · Ferreira de Carvalho, A.C.P.L. · Francês, C.R.L.
 
 *Computer Science Review*, Elsevier, 2026 · COSREV-D-26-01510
 
@@ -185,6 +185,7 @@ cosrev-recursive-training-replication/
   title   = {Recursive Training on Model-Generated Data: A Critical Integrative
              Review of Failure Regimes, Adversarial Interactions and Governance},
   author  = {Azancort Neto, Julio Leite and
+             Teixeira, Carlos Andr{\'e} de Mattos and
              Ferreira de Carvalho, Andr{\'e} Carlos Ponce de Leon and
              Fran\c{c}\^es, Carlos Renato Lisboa},
   journal = {Computer Science Review},
