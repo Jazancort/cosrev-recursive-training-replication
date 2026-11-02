@@ -1,3 +1,5 @@
+<div align="center">
+
 # Recursive Training on Model-Generated Data — Supplementary Materials
 
 [![License: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
@@ -8,10 +10,13 @@
 
 Supplementary code, data and pre-compiled PDFs for the paper:
 
-> **Recursive Training on Model-Generated Data: A Critical Integrative Review of
-> Failure Regimes, Adversarial Interactions and Governance**
-> Azancort Neto, J.L.; Ferreira de Carvalho, A.C.P.L.; Francês, C.R.L.
-> *Computer Science Review*, Elsevier, 2026 · COSREV-D-26-01510
+**Recursive Training on Model-Generated Data: A Critical Integrative Review of Failure Regimes, Adversarial Interactions and Governance**
+
+Azancort Neto, J.L. · Ferreira de Carvalho, A.C.P.L. · Francês, C.R.L.
+
+*Computer Science Review*, Elsevier, 2026 · COSREV-D-26-01510
+
+</div>
 
 ---
 
