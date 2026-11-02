@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/code-MIT-blue.svg)](LICENSE)
 [![Data: CC BY 4.0](https://img.shields.io/badge/data-CC%20BY%204.0-green.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.pending.svg)](https://doi.org/10.5281/zenodo.pending)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23887128.svg)](https://doi.org/10.5281/zenodo.23887128)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![GitHub release](https://img.shields.io/github/v/release/Jazancort/cosrev-recursive-training-replication?color=orange)](https://github.com/Jazancort/cosrev-recursive-training-replication/releases)
 
