@@ -1,0 +1,143 @@
+%% S3.tex — Theorem cards for the six formal results
+%% One card per result, as referenced by \SuppTheorems in the main text.
+%% All \warn flags resolved against source PDFs in references/md/uteis.
+
+\section*{S3. Theorem cards for formal results}
+
+For each of the six formal results summarised in Section~2.1 and Table~2 of the
+main text, this supplement lists: the source and version consulted, the model class,
+data regime, loss function, asymptotic variable, collapse criterion and main
+assumptions, and the principal ``does not imply'' caveat stated in the main text.
+
+\paragraph{Result 1: full replacement leads to generation-wise error growth.}
+\begin{description}
+\item[Sources]
+  Dohmatob et al.\ (2024a), Theorem~1 of arXiv:2402.07043 (original result);
+  Gerstgrasser et al.\ COLM 2024 (arXiv:2404.01413, Eq.~(4)) restates it to
+  contrast with the accumulation bound.
+\item[Model class] Ordinary least squares (Gaussian linear regression).
+\item[Regime] Replace (no real data after generation~0); equal sample size $N$ at
+  each generation.
+\item[Loss / asymptotic variable] Quadratic loss; asymptotic in generations $g$.
+\item[Design] Fixed initial real dataset $X \in \mathbb{R}^{N \times d}$; same
+  design matrix used for synthetic target generation at every generation.
+\item[Assumptions] $N > d+1$; isotropic design $\Sigma = I_d$; independent noise
+  $\sigma^2$ per label.
+\item[Main result] $E_{\text{test}}^{\text{Replace}}(\hat w_g) = E_0 \cdot g$,
+  where $E_0 = \sigma^2 d / (N - d - 1)$.
+\item[Does not imply] Error growth when real data are retained (Result~2); or that
+  neural scaling laws are invalid for frontier LLMs trained on mixed corpora.
+\end{description}
+
+\paragraph{Result 2: accumulation bounds the error.}
+\begin{description}
+\item[Sources]
+  Gerstgrasser et al.\ COLM 2024 (arXiv:2404.01413, Theorem~1); empirical
+  support across architectures and datasets in Kazdan et al.\ ICML 2025
+  (arXiv:2410.16713).
+\item[Model class] As Result~1.
+\item[Regime] Accumulate (original real data retained and accumulated alongside each
+  new generation of synthetic data).
+\item[Design] Fixed initial real dataset (same $X$ accumulated at every generation).
+\item[Main result]
+  $E_g = E_0 \sum_{i=1}^{g+1} i^{-2} < E_0 \pi^2/6 \approx 1.645\,E_0$.
+\item[Numerical check] Supplementary Material~S4 confirms the equality form holds
+  under the fixed design and shows the bound is not attained with fresh inputs.
+\item[Does not imply] Bounded error under temperature-biased sampling (Result~6);
+  or that the synthetic fraction is bounded (it can approach~1 under accumulation
+  while the bound still holds).
+\end{description}
+
+\paragraph{Result 3: a fixed synthetic fraction produces an error floor.}
+\begin{description}
+\item[Source] Dohmatob et al.\ ICLR 2025 (arXiv:2405.05846), Theorem~3.2.
+\item[Model class] High-dimensional linear regression (single training run,
+  non-recursive); covariate distribution non-isotropic.
+\item[Regime] Fixed-mix: a fraction $p \in (0,1)$ of training data is synthetic in
+  a single run.
+\item[Loss / asymptotic variable] Quadratic loss; asymptotic in training set size
+  $N$ (not in generations).
+\item[Main result] Non-vanishing excess error floor
+  $\Delta(p) > 0$ determined by $p$ and the gap between real and synthetic
+  distributions; floor $\to 0$ as $p \to 0$.
+\item[Does not imply] That this floor applies in multi-generation recursive training
+  (different model from Results~1--2); or that neural scaling laws are invalid for
+  frontier LLMs.
+\end{description}
+
+\paragraph{Result 4: without real data, the generative distribution degenerates.}
+\begin{description}
+\item[Sources]
+  Shumailov et al.\ Nature 2024 (original qualitative result, Gaussian mixture
+  and language model experiments);
+  Seddik et al.\ COLM 2024 (arXiv:2404.01413-bis, Theorem~1), statistical LM:
+  model collapse cannot be avoided under fully synthetic training; probability mass
+  concentrates and tails disappear;
+  Suresh et al.\ 2025 (arXiv:2412.17646, Theorem~1): for discrete distributions,
+  the expected number of symbols surviving after $k$ iterations is
+  $\sum_i \exp(-n p_i g_k)$, where $p_i$ is the original frequency; survival time
+  $\approx n p_i$ generations.
+\item[Model class] Language / discrete / Gaussian models; fully synthetic regime.
+\item[Regime] Replace (fully synthetic; no real data after generation~0).
+\item[Loss] Maximum likelihood / cross-entropy.
+\item[Main result] Tails of the original distribution disappear; symbols survive
+  for approximately $n \cdot p_i$ generations (Theorem~1 of Suresh et al.); full
+  degeneration to a limited vocabulary or singular distribution under repeated
+  replacement (Seddik et al., Shumailov et al.).
+\item[Does not imply] That collapse is unavoidable with any real data (see
+  Results~2--3); or a specific rate for LLMs trained on web-scale corpora.
+\end{description}
+
+\paragraph{Result 5: a random-walk view of parameter drift.}
+\begin{description}
+\item[Source] Xu et al.\ arXiv:2505.13947v1 (2025).
+  Theorems used: Theorem~1 (divergence under constant $n$, Gaussian variance
+  estimation); Theorem~3 (sufficiency of $c_t = t^{1+s}$ for unbiased estimators
+  with $\kappa \ge \gamma/2$); Theorem~5 ($P(T) < 1/2$ for any schedule under
+  asymptotic normality).
+\item[Model class] Generic exponential family under uniform tail-bound
+  Assumption~1; unbiasedness required for Theorem~3 (Assumption~2).
+\item[Regime] Fully synthetic; varying sample schedule $n_t = c_t \cdot n$.
+\item[Asymptotic variable] Number of recursive training steps $T$; limit taken
+  jointly as $n \to \infty$ and $T \to \infty$.
+\item[Main results]
+  \begin{itemize}
+  \item \emph{Theorem~1} (Gaussian variance, constant $n$):
+    $E[(\hat\sigma^2_T - \sigma^2)^2] \to \infty$ as $T \to \infty$; diversity
+    vanishes with probability~1.
+  \item \emph{Theorem~3} (general unbiased, $\kappa \ge \gamma/2$):
+    schedule $c_t = t^{1+s}$ ($s > 0$) satisfies
+    $\lim_{n\to\infty}\lim_{T\to\infty} P(\|\hat\theta_T - \theta^*\|_2 \ge \delta)
+    = 0$ for any $\delta > 0$.
+  \item \emph{Theorem~5} ($P(T)$ bound): under asymptotic normality, the probability
+    that the $T$-th synthetic-data estimate outperforms the real-data estimate is
+    $< \tfrac{1}{2}$ for any $T$ and any sample schedule.
+  \end{itemize}
+\item[Does not imply] Negative expected return on synthetic training (Theorem~5
+  bounds probability, not expectation); coexistence of bounded error and useful
+  synthetic training illustrated in S4.2; the $c_t = t^{1+s}$ schedule is
+  sufficient (Theorem~3), not necessary.
+\end{description}
+
+\paragraph{Result 6: temperature-filtered sampling under accumulation.}
+\begin{description}
+\item[Source] Marchi et al.\ IEEE CDC 2024 (DOI: 10.1109/CDC56724.2024.10886816),
+  Theorems~1--3.
+\item[Model class] Discrete generative model with finite output set; closed-loop
+  maximum likelihood or cross-entropy; exact-tracking limit ($\delta = 0$ per-step
+  approximation error).
+\item[Regime] Accumulate; original real data retained.
+\item[Asymptotic variable] Number of generated samples (asymptotic in size of
+  synthetic batches per generation, not in number of generations).
+\item[Main results]
+  \begin{itemize}
+  \item $T_s = 1$ (neutral sampling): dynamics converge to a finite drift; the
+    accumulation bound of Result~2 holds.
+  \item $T_s \neq 1$ (temperature-biased sampling): distribution converges to
+    the uniform distribution on a subset of the vocabulary, or to the simplex
+    boundary, depending on $T_s$ and the initial distribution.
+  \end{itemize}
+\item[Does not imply] That accumulation fails generally; only that it fails when
+  sampling is temperature-biased. The closed-loop approximation ($\delta = 0$) is an
+  idealisation not achieved in practice.
+\end{description}

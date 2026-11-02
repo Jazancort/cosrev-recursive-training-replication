@@ -1,0 +1,28 @@
+{
+  "note": "Retrieved = raw records before date filtering. Out_of_window = removed by date filter. In_window = retrieved - out_of_window. The identity screened = sum(in_window) - duplicates must hold. Duplicate removal was two-pass: 837 in initial dedup + 28 in Amendment 02 (normalised NFKD/ASCII fold) = 865 total.",
+  "cutoff": "29 October 2026",
+  "sources": {
+    "OpenAlex":   {"retrieved": 797, "out_of_window": 0,  "in_window": 797, "queries": 1},
+    "Scopus":     {"retrieved": 594, "out_of_window": 0,  "in_window": 594, "queries": 1},
+    "arXiv":      {"retrieved": 630, "out_of_window": 54, "in_window": 576, "queries": 16},
+    "OpenReview": {"retrieved": 543, "out_of_window": 78, "in_window": 465, "queries": 13},
+    "IEEE":       {"retrieved": 95,  "out_of_window": 29, "in_window": 66,  "queries": 11}
+  },
+  "duplicates": 865,
+  "screened": 1633,
+  "screened_note": "sum(in_window)=797+594+576+465+66=2498; 2498-865(dup)=1633. Amendment 02 corrected OpenReview (-78 out-of-window, corrupted year field) and IEEE (-29 out-of-window, date filter not applied at query time), and found 28 additional normalised duplicates.",
+  "fulltext": 664,
+  "included_S": 10,
+  "validation": {
+    "size": 29,
+    "retrieved": 27,
+    "not_retrieved": 2,
+    "not_retrieved_reasons": [
+      "G13 Taori 2023 (Data Feedback Loops): abstract does not contain terms from the GEN block",
+      "G24 Guo 2024 (The Curious Decline of Linguistic Diversity): no TERMS_T term in abstract"
+    ]
+  },
+  "stop_rule": null,
+  "stop_rule_note": "Saturation criterion: citation chasing stopped when a further round of candidates yielded no new formal result, data regime, or mechanism. No fixed N. 19 evidence categories used as proxy for exhaustiveness (etapa1-candidatos.md).",
+  "anchors_fixed_before_search": true
+}

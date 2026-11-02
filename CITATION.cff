@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: "If you use these materials, please cite the paper below."
+type: software
+title: "Supplementary materials for: Recursive Training on Model-Generated Data"
+version: "1.0.0"
+date-released: "2026-11-02"
+license: MIT
+repository-code: "https://github.com/Jazancort/cosrev-recursive-training-replication"
+abstract: >
+  Supplementary code, data and pre-compiled PDFs for the integrative review
+  "Recursive Training on Model-Generated Data: A Critical Integrative Review of
+  Failure Regimes, Adversarial Interactions and Governance" (Computer Science
+  Review, 2026, COSREV-D-26-01510). Includes S1 (cited sources table), S2 (search
+  protocol), S3 (theorem cards), S4 (numerical checks), simulation scripts,
+  search log and verification scripts.
+
+authors:
+  - family-names: "Azancort Neto"
+    given-names: "Julio Leite"
+    orcid: "https://orcid.org/0000-0003-2866-5445"
+    affiliation: "Institute of Technology, Federal University of Pará (UFPA)"
+  - family-names: "Ferreira de Carvalho"
+    given-names: "André Carlos Ponce de Leon"
+    affiliation: "Institute of Mathematics and Computer Sciences (ICMC), University of São Paulo (USP)"
+  - family-names: "Francês"
+    given-names: "Carlos Renato Lisboa"
+    affiliation: "Institute of Technology, Federal University of Pará (UFPA)"
+
+preferred-citation:
+  type: article
+  title: "Recursive Training on Model-Generated Data: A Critical Integrative Review of Failure Regimes, Adversarial Interactions and Governance"
+  authors:
+    - family-names: "Azancort Neto"
+      given-names: "Julio Leite"
+      orcid: "https://orcid.org/0000-0003-2866-5445"
+    - family-names: "Ferreira de Carvalho"
+      given-names: "André Carlos Ponce de Leon"
+    - family-names: "Francês"
+      given-names: "Carlos Renato Lisboa"
+  journal: "Computer Science Review"
+  year: 2026
+  notes: "COSREV-D-26-01510 — under review"

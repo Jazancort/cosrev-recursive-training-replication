@@ -1,0 +1,85 @@
+%% appendix-search.tex — Search Protocol and Included Studies
+%% Included via \input{appendix-search} at the end of sn-article.tex.
+
+\section{Search protocol}
+\label{app:search}
+
+\subsection*{A1.\ Sources, strings and record flow}
+
+All searches were run on \cutoffdate{} for records published from January~2022.
+The date filter was applied in the query for OpenAlex (\texttt{from\_publication\_date})
+and Scopus (\texttt{PUBYEAR > 2021}), and after retrieval for arXiv, OpenReview and
+IEEE~Xplore. Duplicates were identified first by arXiv identifier or DOI and then by
+normalised title (Unicode NFKD, ASCII folding, case and punctuation removed).
+Table~\ref{tab:flow} gives the record flow; the search scripts are
+available at the project repository; the exact query strings as executed are
+listed below.
+
+\begin{table}[h]
+\caption{Record flow of the structured search.}
+\label{tab:flow}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Source & Retrieved & Outside window & In window \\
+\midrule
+OpenAlex    & \NretOpenAlex{}   & \NoutOpenAlex{}   & \NinOpenAlex{} \\
+Scopus      & \NretScopus{}     & \NoutScopus{}     & \NinScopus{} \\
+arXiv       & \NretarXiv{}      & \NoutarXiv{}      & \NinarXiv{} \\
+OpenReview  & \NretOpenReview{} & \NoutOpenReview{} & \NinOpenReview{} \\
+IEEE Xplore & \NretIEEE{}       & \NoutIEEE{}       & \NinIEEE{} \\
+\midrule
+Total       & \NrecTotal{}      & \Noutwindow{}     & \NinTotal{} \\
+\multicolumn{3}{l}{Duplicates removed} & \Ndup{} \\
+\multicolumn{3}{l}{Unique records screened (title/abstract)} & \Nscreened{} \\
+\multicolumn{3}{l}{Full texts assessed} & \Nfulltext{} \\
+\multicolumn{3}{l}{Evidence studies included via the structured search} & \NincludedS{} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\smallskip
+\paragraph{Recursive-training terms (TERMS).}
+``model collapse'' | ``knowledge collapse'' | ``self-consuming'' |
+``model autophagy'' | ``curse of recursion'' | autophagous | ``recursive training'' |
+``iterative retraining'' | ``self-trained'' | ``data feedback loop(s)'' |
+``closed-loop learning'' | ``self-correcting loop'' | ``iterated learning'' |
+``self-rewarding'' | ``iterative DPO'' | ``iterative preference''.
+
+\paragraph{Generative-model terms (GEN).}
+``generative model'' | ``language model'' | LLM | ``diffusion model'' |
+``foundation model'' | ``synthetic data'' | ``synthetic text'' | ``generated data''.
+
+\paragraph{Per-source syntax.}
+\emph{OpenAlex}: TERMS AND GEN in title and abstract;
+\texttt{from\_publication\_date:2022-01-01}; cursor-paginated.
+\emph{Scopus}: \texttt{TITLE-ABS-KEY(TERMS) AND TITLE-ABS-KEY(GEN)};
+wildcard \texttt{self-train*}; \texttt{PUBYEAR > 2021}; institutional access CAPES/UFPA.
+\emph{arXiv}: each TERMS phrase in \texttt{ti:} or \texttt{abs:}; GEN required in \texttt{abs:};
+categories cs.LG, cs.CL, cs.CR, cs.AI; 54 pre-2022 records excluded after retrieval.
+\emph{OpenReview}: \NqOpenReview{} phrase queries; the query list omits
+``model autophagy'', ``curse of recursion'', ``autophagous'' and ``self-trained''
+because the OpenReview interface does not support them reliably;
+year derived from a truncated Unix timestamp, decoded post-retrieval.
+\emph{IEEE~Xplore}: \NqIEEE{} paired queries (a TERMS phrase paired with a GEN phrase
+where the interface required it); date filter post-retrieval.
+
+\smallskip
+\noindent\textit{Semantic Scholar:} not searched owing to API rate limits at the cutoff date.
+
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection*{A2.\ List of Included Sources}
+
+The manuscript cites \Ncited~sources in total: \Nevidence~evidence studies,
+\Nposition~position paper(s), \Ncontext~context sources, and \Nlegal~legal
+and normative instruments (\SuppStudies).
+Their category (E~evidence, P~position, C~context, L~legal/normative), entry route
+(S~structured search, A~anchor, CH~citation chasing,
+R~added during revision to address a reviewer comment or to verify a claim),
+anchor status, and preprint/workshop flag (\dag) are provided in
+\SuppStudies.
+Evidence studies ($N{=}\Nevidence{}$) are those whose formal results, experiments or
+empirical observations are directly synthesised in the body of the review;
+position, context and legal/normative sources are cited for arguments, background or regulatory reference.
+Category reflects how each source is used in this review.

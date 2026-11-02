@@ -1,0 +1,34 @@
+{
+  "title": "Supplementary materials for: Recursive Training on Model-Generated Data — A Critical Integrative Review of Failure Regimes, Adversarial Interactions and Governance",
+  "description": "<p>Supplementary code, data and pre-compiled PDFs for the integrative review submitted to <em>Computer Science Review</em> (Elsevier), submission COSREV-D-26-01510.</p><p>Contents: S1 (cited-sources table, 101 entries, CSV + PDF), S2 (search protocol: strings, per-source counts, record flow, PDF), S3 (theorem cards for six formal results, PDF), S4 (numerical checks of results in their own models, PDF + scripts), simulation scripts (s4a.py, s4b.py), search log (JSON), and verification/analysis scripts.</p>",
+  "upload_type": "dataset",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "creators": [
+    {
+      "name": "Azancort Neto, Julio Leite",
+      "affiliation": "Institute of Technology, Federal University of Pará (UFPA), Brazil",
+      "orcid": "0000-0003-2866-5445"
+    },
+    {
+      "name": "Ferreira de Carvalho, André Carlos Ponce de Leon",
+      "affiliation": "Institute of Mathematics and Computer Sciences (ICMC), University of São Paulo (USP), Brazil"
+    },
+    {
+      "name": "Francês, Carlos Renato Lisboa",
+      "affiliation": "Institute of Technology, Federal University of Pará (UFPA), Brazil"
+    }
+  ],
+  "keywords": [
+    "model collapse",
+    "recursive training",
+    "synthetic data",
+    "large language models",
+    "integrative review",
+    "data poisoning",
+    "AI governance",
+    "supplementary materials"
+  ],
+  "language": "eng",
+  "notes": "Submitted to Computer Science Review (Elsevier). Submission ID: COSREV-D-26-01510. Under review."
+}

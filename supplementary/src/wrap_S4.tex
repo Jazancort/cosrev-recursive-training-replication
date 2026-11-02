@@ -1,0 +1,87 @@
+%% wrap_S4.tex — Supplementary Material S4: Numerical Checks
+%% Compile: xelatex wrap_S4.tex (from supplementary/src/), then bibtex, then xelatex x2
+%% Output:  supplementary/S4_numerical_checks.pdf
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{placeins}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+%% No-op revision macros from the main article
+\DeclareRobustCommand{\warn}[1]{}
+\providecommand{\added}[1]{#1}
+\providecommand{\changed}[2]{#2}
+\providecommand{\deleted}[1]{}
+
+%% Cross-reference to the accumulation-bound equation in the main text.
+%% \eqref{eq:accumulate} appears in S4.tex; it refers to Eq. (2) of the paper.
+\makeatletter
+\global\@namedef{r@eq:accumulate}{{2}{2}}
+\makeatother
+
+\title{%
+  Supplementary Material S4: Numerical Checks of Formal Results in Their Own Models\\[4pt]
+  {\large\normalfont
+    Recursive Training on Model-Generated Data: A Critical Integrative Review\\
+    of Failure Regimes, Adversarial Interactions and Governance}\\[2pt]
+  {\small\normalfont
+    Azancort Neto, J.L.; Ferreira de Carvalho, A.C.P.L.; Franc\^es, C.R.L.\\
+    \textit{Computer Science Review} (2026), COSREV-D-26-01510}
+}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\tableofcontents
+\clearpage
+
+\input{S4}
+
+%% ---- Figures (the S4.tex paragraphs describe these; images included here) ----
+\FloatBarrier
+\clearpage
+\section*{Figures}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{../../sim/figS4_1}
+\caption{\textbf{Figure S4.1.}
+(a)~Normalised excess risk in linear regression under replacement, accumulation and
+accumulate-subsample ($2N$ budget); dashed: $g+1$ (Result~1); dotted:
+$\sum_{i\leq g+1}i^{-2}$ (Result~2); grey horizontal: $\pi^2/6$; bands: 95\% CI
+over 300 replicates.
+(b)~Normalised error of recursive Gaussian mean estimation under three
+synthetic-sample schedules (log--log); dashed: exact value; dotted: $1+\zeta(1.5)$.
+All numbers from \texttt{sim/s4a\_results.json}, seed 20261029.}
+\label{fig:S4-1}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{../../sim/figS4_2}
+\caption{\textbf{Figure S4.2.}
+(a)~Support size under replacement and accumulation ($K=50$, $N=500$; under
+accumulation support is fixed by construction). Bands: 10--90\% quantiles.
+(b)~Normalised entropy $H(q)/\log K$ under temperature-filtered accumulation;
+dashed: uniform ($H=1$); dotted: $H(p)$. Bands: 10--90\% quantiles.
+(c)~Fixed-design regression; dashed: $g+1$ (Result~1); dotted:
+$\sum_{i\leq g+1}i^{-2}$ (Result~2); bands: 95\% CI.
+All numbers from \texttt{sim/s4b\_results.json}, seed 20261029.}
+\label{fig:S4-2}
+\end{figure}
+
+\FloatBarrier
+\bibliographystyle{plainnat}
+\bibliography{sn-bibliography}
+
+\end{document}

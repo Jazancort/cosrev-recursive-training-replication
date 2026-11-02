@@ -1,0 +1,19 @@
+[project]
+name = "cosrev-recursive-training-replication"
+version = "1.0.0"
+description = "Supplementary code for: Recursive Training on Model-Generated Data (Computer Science Review, 2026)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+
+dependencies = [
+    "numpy>=2.0.0",
+    "matplotlib>=3.9.0",
+    "scipy>=1.13.0",
+]
+
+[project.urls]
+Repository = "https://github.com/Jazancort/cosrev-recursive-training-replication"
+
+[tool.uv]
+dev-dependencies = []
