@@ -126,6 +126,20 @@ def generate(rows, rev_rows, cat, log, arith_ok):
             f"but S1.csv has {route_E.get('S', 0)} evidence studies with route=S."
         )
 
+    # Evidence studies by complementary route, derived from S1 (priority: S > A > v1 > CH > R)
+    ev_route = collections.Counter()
+    for r in rows:
+        if r["category"].strip() != "E":
+            continue
+        route, orig = r["route"].strip(), r["in_orig"].strip().lower()
+        if route == "S":   ev_route["S"] += 1
+        elif route == "A": ev_route["A"] += 1
+        elif orig == "yes": ev_route["V1"] += 1
+        else:              ev_route[route] += 1
+    n_e = sum(r["category"].strip() == "E" for r in rows)
+    if sum(ev_route.values()) != n_e:
+        sys.exit(f"INCONSISTENCY: evidence routes {dict(ev_route)} do not sum to {n_e}")
+
     h = hashlib.sha256(S1.read_bytes() + LOG.read_bytes()).hexdigest()[:16]
     screen_flag = "" if arith_ok else r"\warn{4}"
 
@@ -206,10 +220,10 @@ def generate(rows, rev_rows, cat, log, arith_ok):
         r"\newcommand{\NoutWindow}{\Noutwindow}",
         # Evidence studies by complementary route (anchor priority > v1 > S > CH > R)
         # bertrand2024stability is route=S AND anchor: counted in NincludedS, not NanchorE
-        r"\newcommand{\NanchorE}{7}   % anchors not in structured search: alemohammad+dohmatob×3+gerstgrasser+seddik+shumailov+marchi minus bertrand(=S)",
-        r"\newcommand{\NvoneE}{17}    % retained from v1 (in_orig=YES), not anchor",
-        r"\newcommand{\NchE}{18}      % citation chasing, not anchor, not v1",
-        r"\newcommand{\NrevE}{9}      % revision, not anchor, not v1 — verified by _count_routes.py",
+        macro("NanchorE", fmt(ev_route["A"])) + "   % evidence studies with route=A (anchors not counted under S)",
+        macro("NvoneE",   fmt(ev_route["V1"])) + "  % evidence studies retained from v1, not anchors",
+        macro("NchE",     fmt(ev_route["CH"])) + "  % evidence studies by citation chasing, not anchors, not v1",
+        macro("NrevE",    fmt(ev_route["R"])) + "   % evidence studies added during revision, not anchors, not v1",
         "%",
         "% ── Validation set ─────────────────────────────────────────────",
         opt("Nvalset",     val.get("size")),
