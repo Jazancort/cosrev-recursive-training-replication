@@ -172,6 +172,11 @@ def generate(rows, rev_rows, cat, log, arith_ok):
         "% ── Original vs revision split ─────────────────────────────────",
         macro("NorigYes",    fmt(in_orig_yes)),
         macro("NorigNo",     fmt(in_orig_no)),
+        r"\newcommand{\NorigCited}{57}   % references listed in the submitted v1 PDF (50 in the LaTeX source + 7 surveys absent from it)",
+        r"\newcommand{\NorigRemoved}{21} % removed from v1: 14 from the LaTeX-source set + 7 surveys listed only in the submitted PDF",
+        r"\newcommand{\NorigRemovedMat}{14} % of the removed, those removed with the material they supported",
+        r"\newcommand{\NorigSurveys}{7}     % of the removed, general surveys cited for context (listed only in the submitted PDF)",
+        r"\newcommand{\NorigFixed}{4}    % v1 sources with corrected bib key (3 wrong first-author, 1 wrong venue) — reconcile_sources.py",
         "%",
         "% ── Non-archival (dagger) ───────────────────────────────────────",
         macro("Nnonarchival", fmt(nonarch)),
@@ -191,6 +196,20 @@ def generate(rows, rev_rows, cat, log, arith_ok):
         macro("Nscreened",   fmt(log["screened"]) + screen_flag),
         opt("Nfulltext",     log.get("fulltext")),
         macro("NincludedS",   fmt(route_E.get("S", 0))),
+        "%",
+        "% ── PRISMA figure macros ─────────────────────────────────────────",
+        # NexclTA = screened - fulltext (excluded at title/abstract)
+        macro("NexclTA",  fmt(log["screened"] - log.get("fulltext", 0))),
+        # NexclFT = fulltext - NincludedS (excluded at full text, structured search only)
+        macro("NexclFT",  fmt(log.get("fulltext", 0) - route_E.get("S", 0))),
+        # Alias for NoutWindow (used in TikZ code)
+        r"\newcommand{\NoutWindow}{\Noutwindow}",
+        # Evidence studies by complementary route (anchor priority > v1 > S > CH > R)
+        # bertrand2024stability is route=S AND anchor: counted in NincludedS, not NanchorE
+        r"\newcommand{\NanchorE}{7}   % anchors not in structured search: alemohammad+dohmatob×3+gerstgrasser+seddik+shumailov+marchi minus bertrand(=S)",
+        r"\newcommand{\NvoneE}{17}    % retained from v1 (in_orig=YES), not anchor",
+        r"\newcommand{\NchE}{18}      % citation chasing, not anchor, not v1",
+        r"\newcommand{\NrevE}{9}      % revision, not anchor, not v1 — verified by _count_routes.py",
         "%",
         "% ── Validation set ─────────────────────────────────────────────",
         opt("Nvalset",     val.get("size")),
