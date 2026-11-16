@@ -24,7 +24,7 @@ Azancort Neto, J.L. · Teixeira, C.A.M. · Gomes, E.H.C. · Ferreira de Carvalho
 
 | # | File | What it is |
 |---|---|---|
-| **S1** | `supplementary/S1_cited_sources.csv` | 101 cited sources — category, entry route, archival status, replication status |
+| **S1** | `supplementary/S1_cited_sources.csv` | 105 cited sources — category, entry route, archival status, replication status |
 | **S1** | `supplementary/S1_cited_sources.pdf` | Formatted table version of S1 |
 | **S2** | `supplementary/S2_search_protocol.pdf` | Full search strings, per-source counts and record flow |
 | **S3** | `supplementary/S3_theorem_cards.pdf` | Theorem cards for the six formal results |
@@ -53,7 +53,7 @@ We screened 1,633 records from five sources (29 October 2026 cutoff), assessed 6
 
 ### S1 — Cited sources (`S1_cited_sources.csv`)
 
-101 rows, 7 columns:
+105 rows, 7 columns:
 
 | Column | Values |
 |---|---|
@@ -136,6 +136,7 @@ Pre-compiled PDFs are already in `supplementary/`.
 | `scripts/make_counts.py` | Regenerate `counts.tex` macros from `S1.csv` + `search_log.json` |
 | `scripts/match_insearch.py` | Verify which route-R sources also appear in the structured search |
 | `scripts/check_dupes_and_breaks.py` | Check for duplicate paragraphs and LaTeX line-break issues |
+| `scripts/generate_s1_table.py` | Build the S1 table (LaTeX) from S1 CSV + bibliography; compile `supplementary/src/wrap_S1.tex` |
 | `scripts/reconcile_sources.py` | Reconcile cited sources between v1 and v2 of the manuscript |
 
 ---
@@ -186,6 +187,7 @@ cosrev-recursive-training-replication/
              Review of Failure Regimes, Adversarial Interactions and Governance},
   author  = {Azancort Neto, Julio Leite and
              Teixeira, Carlos Andr{\'e} de Mattos and
+             Gomes, Evelin Helena Cardoso and
              Ferreira de Carvalho, Andr{\'e} Carlos Ponce de Leon and
              Fran\c{c}\^es, Carlos Renato Lisboa},
   journal = {Computer Science Review},

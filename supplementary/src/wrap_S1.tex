@@ -1,0 +1,57 @@
+%% wrap_S1.tex: Supplementary Table S1 (cited sources)
+%% Build: python scripts/generate_s1_table.py ; cd supplementary/src ; xelatex wrap_S1.tex (twice)
+%% Output: supplementary/S1_cited_sources.pdf
+\documentclass[a4paper,10pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{longtable,booktabs,array,lmodern,microtype,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[hidelinks]{hyperref}
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\input{counts}
+
+\begin{document}
+
+\section*{Supplementary Table S1. Reference Classification}
+
+\subsection*{Legend}
+
+\noindent\textbf{Scope.}
+All \Ncited{} sources cited in the revised manuscript: \Nevidence{} evidence studies,
+\Nposition{} position papers, \Ncontext{} context sources and \Nlegal{} legal and normative instruments.
+The systematic search was conducted on \cutoffdate{} (cutoff).
+
+\smallskip
+\noindent\textbf{Columns.}
+\begin{description}
+\item[\#] Sequential number (alphabetical by citation key).
+\item[Key] BibTeX citation key.
+\item[Citation] First author, year and abbreviated title.
+\item[Venue] Journal, conference or institution (truncated).
+\item[Cat.] Category of use: \textbf{E} evidence study, \textbf{P} position paper, \textbf{C} context or background, \textbf{L} legal or normative instrument.
+\item[In orig.] \textbf{yes}: listed in the original submission (\NorigCited{} references; \NorigYes{} retained, \NorigRemoved{} removed with the material they supported); \textbf{no}: added during the revision (\NorigNo{}).
+\item[Route] For revision entries: \textbf{S} structured search; \textbf{CH} citation chasing; \textbf{R} added during revision; \textbf{A} anchor study fixed before the search. Original entries show ---.
+\item[Anchor] \textbf{yes} if route A.
+\item[$\dagger$] No archival peer-reviewed version at the cutoff date (\Nnonarchival{} sources).
+\end{description}
+
+\medskip
+\begingroup
+\small
+\begin{longtable}{@{}rlp{5.2cm}p{2.8cm}cccc c@{}}
+\toprule
+\# & Key & Citation & Venue & Cat. & In orig. & Route & Anchor & $\dagger$ \\
+\midrule
+\endfirsthead
+\toprule
+\# & Key & Citation & Venue & Cat. & In orig. & Route & Anchor & $\dagger$ \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\input{S1_table}
+\end{longtable}
+\endgroup
+
+\end{document}
