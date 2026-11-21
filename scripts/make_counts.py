@@ -224,6 +224,7 @@ def generate(rows, rev_rows, cat, log, arith_ok):
         macro("NvoneE",   fmt(ev_route["V1"])) + "  % evidence studies retained from v1, not anchors",
         macro("NchE",     fmt(ev_route["CH"])) + "  % evidence studies by citation chasing, not anchors, not v1",
         macro("NrevE",    fmt(ev_route["R"])) + "   % evidence studies added during revision, not anchors, not v1",
+        macro("NcomplE",  fmt(cat["E"] - route_E.get("S", 0))) + "  % evidence studies from the complementary routes (all except structured search)",
         "%",
         "% ── Validation set ─────────────────────────────────────────────",
         opt("Nvalset",     val.get("size")),
